@@ -1,5 +1,5 @@
-class StatusesController < ApplicationController
-  before_action :set_status, only: [:show, :update, :destroy]
+class StatusesController < OpenReadController
+  before_action :set_status, only: [:update, :destroy]
 
   # GET /statuses
   def index
@@ -15,7 +15,7 @@ class StatusesController < ApplicationController
 
   # POST /statuses
   def create
-    @status = Status.new(status_params)
+    @status = current_user.statuses.create(status_params)
 
     if @status.save
       render json: @status, status: :created, location: @status
