@@ -3,7 +3,7 @@ class StatusesController < OpenReadController
 
   # GET /statuses
   def index
-    @statuses = Status.all
+    @statuses = current_user.statuses
 
     render json: @statuses
   end
