@@ -43,8 +43,7 @@ class UsersController < ProtectedController
       head :no_content
     end
   end
-
-  def index
+   def index
       render json: User.all
   end
 
