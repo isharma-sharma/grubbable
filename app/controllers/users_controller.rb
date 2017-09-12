@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class UsersController < ProtectedController
-  skip_before_action :authenticate, only: [:signup, :signin, :update]
+  skip_before_action :authenticate, only: [:signup, :signin]
 
   # POST '/sign-up'
   def signup
@@ -45,8 +45,12 @@ class UsersController < ProtectedController
   end
 
   def index
-      render json: User.all
-  end
+    @users = User.all
+    @users = @users.where.not(id: current_user)
+   render json: @users
+
+ end
+
 
   def show
     @user = User.find(params[:id])
