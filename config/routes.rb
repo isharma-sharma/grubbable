@@ -9,6 +9,7 @@
   delete '/sign-out/:id' => 'users#signout'
   patch '/change-password/:id' => 'users#changepw'
   patch '/update-info/:id' => 'users#update'
-  # get '/users' => 'users#index'
+  # get '/users/:id' => 'users#show'
+
   resources :users, only: [:index, :show]
 end
