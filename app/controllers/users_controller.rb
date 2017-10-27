@@ -49,13 +49,13 @@ class UsersController < ProtectedController
     @users = User.all
     @users = @users.where.not(id: current_user)
    render json: @users
- end
+  end
+
 
  def show
-  @user = User.find_by(name: params[:id])
+ @user = User.find_by(name: params[:id])
     render json: @user
-
-  end
+end
 
   def update
    @user = User.find(params[:id])

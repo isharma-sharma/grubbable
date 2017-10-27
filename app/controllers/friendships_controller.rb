@@ -1,4 +1,4 @@
-class FriendshipsController < ApplicationController
+class FriendshipsController < OpenReadController
   before_action :set_friendship, only: [:show, :update, :destroy]
 
   # GET /friendships
@@ -10,12 +10,17 @@ class FriendshipsController < ApplicationController
 
   # GET /friendships/1
   def show
+      @friendship = friendships.find(params[:id])
     render json: @friendship
   end
 
   # POST /friendships
   def create
-    @friendship = Friendship.new(friendship_params)
+
+    @friendship = current_user.friendships.create(friendship_params)
+    # @friendship = current_user.friendships.build
+    # @friendship.friend_id = params[:friend_id]
+    # @friendship.user_id = current_user.id
 
     if @friendship.save
       render json: @friendship, status: :created, location: @friendship
@@ -23,6 +28,7 @@ class FriendshipsController < ApplicationController
       render json: @friendship.errors, status: :unprocessable_entity
     end
   end
+
 
   # PATCH/PUT /friendships/1
   def update
@@ -46,6 +52,6 @@ class FriendshipsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def friendship_params
-      params.require(:friendship).permit(:user_id)
+      params.require(:friendship).permit(:friend_id, :user_id)
     end
 end

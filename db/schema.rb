@@ -45,7 +45,6 @@ ActiveRecord::Schema.define(version: 20170910193524) do
   create_table "statuses", force: :cascade do |t|
     t.integer  "user_id"
     t.text     "status"
-    t.datetime "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_statuses_on_user_id", using: :btree
