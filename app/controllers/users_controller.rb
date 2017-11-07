@@ -53,8 +53,11 @@ class UsersController < ProtectedController
 
 
  def show
- @user = User.find_by(name: params[:id])
+ if @user = User.find_by(name: params[:id])
     render json: @user
+  else @user = User.find(params[:id])
+    render json: @user
+  end
 end
 
   def update
