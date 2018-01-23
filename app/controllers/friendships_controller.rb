@@ -16,8 +16,8 @@ class FriendshipsController < OpenReadController
 
   # POST /friendships
   def create
-
     @friendship = current_user.friendships.create(friendship_params)
+
     # @friendship = current_user.friendships.build
     # @friendship.friend_id = params[:friend_id]
     # @friendship.user_id = current_user.id

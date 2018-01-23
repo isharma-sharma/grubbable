@@ -18,6 +18,7 @@ module Authentication
     before_create :set_token
     after_find :fix_up_token
     validates :email, uniqueness: true
+    validates :user_id, :friend_id, uniqueness: true
   end
 
   def logout

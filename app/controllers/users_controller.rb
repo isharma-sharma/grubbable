@@ -55,6 +55,7 @@ class UsersController < ProtectedController
  def show
  if @user = User.find_by(name: params[:id])
     render json: @user
+    binding.pry
   else @user = User.find(params[:id])
     render json: @user
   end
